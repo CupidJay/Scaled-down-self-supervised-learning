@@ -27,7 +27,6 @@ import simclr.loader
 import simclr.losses
 
 from utils import load_pretrained_model
-import custom_resnet
 
 try:
     import apex
@@ -35,15 +34,11 @@ try:
 except ImportError:
     pass
 
-official_model_names = sorted(name for name in models.__dict__
+model_names = sorted(name for name in models.__dict__
     if name.islower() and not name.startswith("__")
     and callable(models.__dict__[name]))
 
-custom_model_names = sorted(name for name in custom_resnet.__dict__
-    if name.islower() and not name.startswith("__")
-    and callable(custom_resnet.__dict__[name]))
 
-model_names = official_model_names + custom_model_names
 
 parser = argparse.ArgumentParser(description='PyTorch ImageNet Training')
 parser.add_argument('data', metavar='DIR',
@@ -192,11 +187,7 @@ def main_worker(gpu, ngpus_per_node, args):
     # create model
     print("=> creating model '{}'".format(args.arch))
 
-    if args.arch in official_model_names:
-        base_model = models.__dict__[args.arch]
-    else:
-        base_model = custom_resnet.__dict__[args.arch]
-    model = simclr.builder.SimCLR(base_model, args.simclr_dim, args.mlp)
+    model = simclr.builder.SimCLR(models.__dict__[args.arch], args.simclr_dim, args.mlp)
     print(model)
 
     args.warmup_epochs = 0
