@@ -30,6 +30,7 @@ results on small data alone.
 * PyTorch (= 1.6)
 * torchvision (= 0.7)
 * Numpy
+* CUDA 10.1
 
 ### Small resolution
 - Pretraining stage: we use mocov2 for example (c.f. moco/pretrain_cub.sh), run:
