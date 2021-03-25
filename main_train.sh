@@ -4,4 +4,5 @@ python main.py \
   --batch-size 64 --epochs 120 \
   --gpus 12,13,14,15 \
   --save-dir cub_checkpoints \
+  --num-classes 200 \
   /opt/caoyh/datasets/cub200

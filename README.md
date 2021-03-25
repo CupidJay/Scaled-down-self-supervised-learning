@@ -56,6 +56,7 @@ python main.py \
   --gpus 12,13,14,15 \
   --mixup --alpha 1.0 \
   --pretrained [path to SSL pre-trained model] \
+  --num-classes 200 \
   [path to cub200 dataset]
 ```
 

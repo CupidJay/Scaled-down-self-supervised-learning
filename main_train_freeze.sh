@@ -4,7 +4,7 @@ python main_freeze.py \
   --batch-size 64 --epochs 10 \
   --step-lr --freeze \
   --gpus 8,9,10,11 \
-  --save-dir flowers_checkpoints \
+  --save-dir cub_checkpoints \
   --pretrained [path to your pretrained model] \
-  --num-classes 102 \
+  --num-classes 200 \
   /opt/caoyh/datasets/cub200
