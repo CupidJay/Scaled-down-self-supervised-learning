@@ -58,4 +58,4 @@ See [./detection](detection).
 
 ### Transferring to other classification benchmarks
 
-See [./classfication_benchmark](classfication_benchmark).
+See [./classification_benchmark](classification_benchmark).
