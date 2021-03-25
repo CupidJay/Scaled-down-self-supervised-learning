@@ -27,8 +27,8 @@ results on small data alone.
 
 ### Prerequisites
 * python 3
-* PyTorch (>= 1.6)
-* torchvision (>= 0.7)
+* PyTorch (= 1.6)
+* torchvision (= 0.7)
 * Numpy
 
 ### Small resolution
