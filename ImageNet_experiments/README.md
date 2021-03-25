@@ -1,14 +1,8 @@
-We follow [official MoCo training code](https://github.com/facebookresearch/moco) and please refer to the original responstory for more details.
+We follow [official MoCo training code](https://github.com/facebookresearch/moco) and please refer to the original re for more details.
 
 ### Preparation
 
 Install PyTorch and ImageNet dataset following the [official PyTorch ImageNet training code](https://github.com/pytorch/examples/tree/master/imagenet).
-
-This repo aims to be minimal modifications on that code. Check the modifications by:
-```
-diff main_moco.py <(curl https://raw.githubusercontent.com/pytorch/examples/master/imagenet/main.py)
-diff main_lincls.py <(curl https://raw.githubusercontent.com/pytorch/examples/master/imagenet/main.py)
-```
 
 
 ### Pre-Training on ImageNet
@@ -61,3 +55,7 @@ python main_lincls.py \
 ### Transferring to Object Detection
 
 See [./detection](detection).
+
+### Transferring to other classification benchmarks
+
+To be updated.
