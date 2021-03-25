@@ -1,4 +1,4 @@
-python main_moco_finetune.py \
+python main_moco.py \
   -a resnet50 \
   --lr 0.3 \
   --batch-size 256 --epochs 800 \

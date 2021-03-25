@@ -1,4 +1,4 @@
-python main_imagenet.py \
+python main_supervised.py \
   -a resnet50 \
   --lr 0.1 \
   --batch-size 256 --epochs 800 \
