@@ -32,17 +32,54 @@ results on small data alone.
 * Numpy
 
 ### Small resolution
-- Pretraining stage: we use mocov2 for example
+- Pretraining stage: we use mocov2 for example (c.f. moco/pretrain_cub.sh), run:
 ```
 cd moco
-bash finetune_cub.sh
+python main_moco_pretraining.py \
+  -a resnet50 \
+  --lr 0.03 \
+  --batch-size 128 --epochs 200 \
+  --input-size [112 or 56 for small resolutions and 224 for baseline] \
+  --dist-url 'tcp://localhost:10004' --multiprocessing-distributed --world-size 1 --rank 0 \
+  --gpus 0,1,2,3 \
+  --save-dir cub_checkpoints \
+  --mlp --moco-t 0.2 --moco-k 4096 --aug-plus --cos \
+  [path to cub200 dataset]
+
 ```
-- Fine-tuning stage: we use mixup for example
+- Fine-tuning stage: we use mixup for example (c.f. main_train_mixup.sh):
 ```
-bash main_train_mixup.sh
+python main.py \
+  -a resnet50 \
+  --lr 0.1 \
+  --batch-size 64 --epochs 120 \
+  --gpus 12,13,14,15 \
+  --mixup --alpha 1.0 \
+  --pretrained [path to SSL pre-trained model] \
+  [path to cub200 dataset]
 ```
 
+### Small architecture
+
+- Pretraining stage: change the architecture from resnet50 to custom_resnet50 (we remove conv5 in custom_resnet50) in moco/pretrain_cub.sh
+- Warm-up conv5 stage: warm up conv5 in custom_resnet50 (c.f. main_train_freeze.sh), run:
+```
+python main_freeze.py \
+  -a resnet50 \
+  --lr 0.1 \
+  --batch-size 64 --epochs 10 \
+  --step-lr --freeze \
+  --gpus 8,9,10,11 \
+  --save-dir cub_checkpoints \
+  --pretrained [path to SSL pretrained custom_resnet50 model] \
+  --num-classes 200 \
+  [path to cub200 dataset]
+```
+- Fine-tuning stage, set --pretrained to the model obtained in the previous stage in main_train_mixup.sh
+
+
 ## Citation
+
 ```
 @article{S3L,
    title         = {Rethinking Self-supervised Learning: Small is Beautiful},

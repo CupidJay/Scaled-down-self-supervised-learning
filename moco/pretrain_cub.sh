@@ -1,5 +1,5 @@
 python main_moco_pretraining.py \
-  -a custom_resnet50 \
+  -a resnet50 \
   --lr 0.03 \
   --batch-size 128 --epochs 200 \
   --input-size 224 \
