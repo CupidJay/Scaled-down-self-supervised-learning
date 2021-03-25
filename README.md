@@ -33,7 +33,7 @@ results on small data alone.
 * CUDA 10.1
 
 ### Small resolution
-- Pretraining stage: we use mocov2 for example (c.f. moco/pretrain_cub.sh), run:
+- Pre-training stage: we use mocov2 for example (c.f. moco/pretrain_cub.sh), run:
 ```
 cd moco
 python main_moco_pretraining.py \
@@ -48,6 +48,23 @@ python main_moco_pretraining.py \
   [path to cub200 dataset]
 
 ```
+  Multi-stage-pre-training: we use 112->224 as an example, first pre-train a model under 112x112 resolution as before, then run:
+```
+python main_moco_pretraining.py \
+  -a resnet50 \
+  --lr 0.03 \
+  --batch-size 128 --epochs 200 \
+  --input-size 224 \
+  --dist-url 'tcp://localhost:10004' --multiprocessing-distributed --world-size 1 --rank 0 \
+  --gpus 0,1,2,3 \
+  --save-dir cub_checkpoints \
+  --mlp --moco-t 0.2 --moco-k 4096 --aug-plus --cos \
+  --pretrained [112 resolution pretrained model]
+  [path to cub200 dataset]
+
+```
+
+
 - Fine-tuning stage: we use mixup for example (c.f. main_train_mixup.sh):
 ```
 python main.py \
