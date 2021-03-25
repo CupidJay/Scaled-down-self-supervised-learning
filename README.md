@@ -79,7 +79,7 @@ python main_freeze.py \
 - Fine-tuning stage, set --pretrained to the model obtained in the previous stage in main_train_mixup.sh
 
 ### ImageNet experiments
-For ImageNet and small ImageNet experiments, see [./ImageNet_experiments](ImageNet_experiments).
+For ImageNet and small ImageNet experiments, see [./ImageNet_experiments](ImageNet_experiments). The performance of transferring to object detection and other classification benchmarks can also be found here.
 
 
 ## Citation
