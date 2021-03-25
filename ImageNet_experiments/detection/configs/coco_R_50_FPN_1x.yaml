@@ -1,0 +1,24 @@
+_BASE_: "Base-RCNN-FPN-BN.yaml"
+MODEL:
+  MASK_ON: True
+  WEIGHTS: "detectron2://ImageNetPretrained/MSRA/R-50.pkl"
+  BACKBONE:
+    FREEZE_AT: 0
+  RESNETS:
+    DEPTH: 50
+    NORM: "SyncBN"
+    STRIDE_IN_1X1: False
+  FPN:
+    NORM: "SyncBN"
+TEST:
+  PRECISE_BN:
+    ENABLED: True
+INPUT:
+  MIN_SIZE_TRAIN: (640, 672, 704, 736, 768, 800)
+  MIN_SIZE_TEST: 800
+DATASETS:
+  TRAIN: ("coco_2017_train",)
+  TEST: ("coco_2017_val",)
+SOLVER:
+  STEPS: (60000, 80000)
+  MAX_ITER: 90000
