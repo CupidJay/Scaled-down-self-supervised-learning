@@ -107,5 +107,5 @@ For ImageNet and small ImageNet experiments, see [./ImageNet_experiments](ImageN
    title         = {Rethinking Self-supervised Learning: Small is Beautiful},
    author        = {Yun-Hao Cao and Jianxin Wu},
    year          = {2021},
-   journal = {To appear}}
+   journal = {arXiv preprint arXiv:2103.13559}}
 ```
