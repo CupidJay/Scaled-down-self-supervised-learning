@@ -24,7 +24,7 @@ python main_moco.py \
 - First we create small ImageNet, run:
 
 ```
-python create_small_imagenet.py \
+python create_small_imagenet.py 
 ```
 - For unsupervised pre-training, we run moco_imagenet.sh as above and just change [imagenet-folder] to [small-imagenet-folder]
 - For supervised pre-training, we run supervised_training.sh:
