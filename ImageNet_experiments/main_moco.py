@@ -24,18 +24,11 @@ import torchvision.models as models
 
 import moco.loader
 import moco.builder
-from moco.ssl_loader import SSLDataset
 
-import custom_resnet
 
-official_model_names = sorted(name for name in models.__dict__
+model_names = sorted(name for name in models.__dict__
     if name.islower() and not name.startswith("__")
     and callable(models.__dict__[name]))
-
-custom_model_names = sorted(name for name in custom_resnet.__dict__
-    if name.islower() and not name.startswith("__")
-    and callable(custom_resnet.__dict__[name]))
-model_names = official_model_names + custom_model_names
 
 parser = argparse.ArgumentParser(description='PyTorch ImageNet Training')
 parser.add_argument('data', metavar='DIR',
@@ -186,12 +179,9 @@ def main_worker(gpu, ngpus_per_node, args):
                                 world_size=args.world_size, rank=args.rank)
     # create model
     print("=> creating model '{}'".format(args.arch))
-    if args.arch in official_model_names:
-        base_model = models.__dict__[args.arch]
-    else:
-        base_model = custom_resnet.__dict__[args.arch]
+
     model = moco.builder.MoCo(
-        base_model,
+        models.__dict__[args.arch],
         args.moco_dim, args.moco_k, args.moco_m, args.moco_t, args.mlp)
     print(model)
 
