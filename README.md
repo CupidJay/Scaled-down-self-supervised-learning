@@ -103,7 +103,7 @@ For ImageNet and small ImageNet experiments, see [./ImageNet_experiments](ImageN
 
 
 ## Citation
-
+Please consider citing our work in your publications if it helps your research.
 ```
 @article{S3L,
    title         = {Rethinking Self-supervised Learning: Small is Beautiful},
