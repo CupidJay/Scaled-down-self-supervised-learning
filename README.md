@@ -1,7 +1,7 @@
 # Scaled-down self-supervised learning
 official pytorch implementation of Rethinking Self-supervised Learning: Small is Beautiful.
 
-paper is availabel at [[arxiv]](https://arxiv.org/abs/2103.13559)
+paper is available at [[arxiv]](https://arxiv.org/abs/2103.13559)
 
 ## Abstract
 Self-supervised learning (SSL), in particular contrastive
